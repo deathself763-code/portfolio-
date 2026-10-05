@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdelrhman Mohamed — Backend .NET Developer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --bg: #0a0e14;
+    --surface: #0f1620;
+    --surface-2: #131c29;
+    --line: #1d2836;
+    --blue: #4f9cff;
+    --blue-dim: #2f6bb0;
+    --cyan: #4dd8e6;
+    --text: #d7dee6;
+    --muted: #6d7c8f;
+    --green: #5fd68a;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(79,156,255,0.06), transparent 40%),
+      radial-gradient(circle at 85% 60%, rgba(77,216,230,0.05), transparent 45%);
+  }
+
+  .mono{ font-family: 'JetBrains Mono', monospace; }
+
+  a{ color: inherit; text-decoration: none; }
+
+  ::selection{ background: var(--blue-dim); color: #fff; }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* NAV */
+  nav{
+    position: sticky; top:0; z-index: 20;
+    background: rgba(10,14,20,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 56px;
+  }
+  .brand{ font-family:'JetBrains Mono'; font-weight:600; font-size:14px; color: var(--text); }
+  .brand span{ color: var(--green); }
+  .navlinks{ display:flex; gap: 24px; font-family:'JetBrains Mono'; font-size:13px; color: var(--muted); }
+  .navlinks a:hover{ color: var(--blue); }
+
+  /* HERO */
+  header.hero{
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--line);
+  }
+  .prompt-line{
+    font-family:'JetBrains Mono'; font-size: 14px; color: var(--muted); margin-bottom: 18px;
+    display:flex; gap:8px; align-items:center;
+  }
+  .prompt-line .dot{ color: var(--green); }
+  .cursor{
+    display:inline-block; width:9px; height:20px; background: var(--blue);
+    animation: blink 1s steps(1) infinite; vertical-align: -4px;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  h1{
+    font-family:'JetBrains Mono';
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.25;
+    color: #fff;
+    max-width: 620px;
+  }
+  h1 .role{ color: var(--blue); }
+
+  .hero-sub{
+    margin-top: 20px;
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap: 18px; margin-top: 28px;
+    font-family:'JetBrains Mono'; font-size: 13px; color: var(--muted);
+  }
+  .hero-meta a:hover{ color: var(--cyan); }
+  .hero-meta span::before{ content: '// '; color: var(--blue-dim); }
+
+  .btn-row{ display:flex; gap:12px; margin-top: 34px; }
+  .btn{
+    font-family:'JetBrains Mono'; font-size: 13px; padding: 11px 18px;
+    border: 1px solid var(--blue-dim); border-radius: 3px; color: var(--blue);
+    transition: all .15s ease;
+  }
+  .btn:hover{ background: var(--blue); color: #04101f; border-color: var(--blue); }
+  .btn.ghost{ border-color: var(--line); color: var(--muted); }
+  .btn.ghost:hover{ border-color: var(--muted); color: var(--text); background: none; }
+
+  /* SECTION HEADERS */
+  section{ padding: 64px 0; border-bottom: 1px solid var(--line); }
+  .sec-head{
+    display:flex; align-items:baseline; gap: 10px; margin-bottom: 34px;
+  }
+  .sec-head .tag{
+    font-family:'JetBrains Mono'; font-size: 13px; color: var(--blue-dim);
+  }
+  .sec-head h2{
+    font-family:'JetBrains Mono'; font-size: 20px; font-weight: 600; color: #fff;
+  }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
+  .about-text p{ color: var(--muted); font-size: 15px; margin-bottom: 14px; }
+  .about-text strong{ color: var(--text); font-weight: 600; }
+
+  .stack-box{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 20px;
+  }
+  .stack-box h3{
+    font-family:'JetBrains Mono'; font-size: 12px; color: var(--muted); margin-bottom: 14px;
+    text-transform: lowercase;
+  }
+  .chip-group{ margin-bottom: 14px; }
+  .chip-group:last-child{ margin-bottom: 0; }
+  .chip-label{ font-family:'JetBrains Mono'; font-size: 11px; color: var(--blue-dim); margin-bottom: 6px; display:block;}
+  .chips{ display:flex; flex-wrap:wrap; gap: 6px; }
+  .chip{
+    font-family:'JetBrains Mono'; font-size: 12px; padding: 4px 9px;
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; color: var(--text);
+  }
+
+  /* PROJECTS */
+  .proj-list{ display:flex; flex-direction:column; gap: 16px; }
+  .proj{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 22px 24px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .proj:hover{ border-color: var(--blue-dim); transform: translateX(2px); }
+  .proj-top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;}
+  .proj-name{ font-family:'JetBrains Mono'; font-size: 16px; font-weight: 600; color: #fff; }
+  .proj-stack{ font-family:'JetBrains Mono'; font-size: 11.5px; color: var(--cyan); }
+  .proj-desc{ color: var(--muted); font-size: 14px; }
+
+  /* TIMELINE / TRAINING */
+  .timeline{ display:flex; flex-direction:column; gap: 0; }
+  .t-item{
+    display:grid; grid-template-columns: 160px 1fr; gap: 20px;
+    padding: 16px 0; border-top: 1px solid var(--line);
+  }
+  .t-item:first-child{ border-top:none; }
+  .t-org{ font-family:'JetBrains Mono'; font-size: 12.5px; color: var(--blue-dim); }
+  .t-title{ color: var(--text); font-size: 14.5px; font-weight: 500; margin-bottom: 4px;}
+  .t-desc{ color: var(--muted); font-size: 13.5px; }
+
+  /* FOOTER / CONTACT */
+  footer{ padding: 56px 0 64px; text-align:center; }
+  footer .prompt-line{ justify-content:center; margin-bottom: 22px; }
+  footer h2{
+    font-family:'JetBrains Mono'; font-size: 24px; color: #fff; margin-bottom: 16px;
+  }
+  footer p{ color: var(--muted); margin-bottom: 26px; }
+  .contact-row{ display:flex; gap: 14px; justify-content:center; flex-wrap:wrap; }
+
+  @media (max-width: 720px){
+    .about-grid{ grid-template-columns: 1fr; }
+    .t-item{ grid-template-columns: 1fr; gap: 4px; }
+    .navlinks{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">abdelrhman<span>.dev</span></div>
+    <div class="navlinks">
+      <a href="#about">about</a>
+      <a href="#projects">projects</a>
+      <a href="#training">training</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="prompt-line mono"><span class="dot">➜</span> whoami</div>
+    <h1>Abdelrhman Mohamed<br><span class="role">Junior Backend .NET Developer</span><span class="cursor"></span></h1>
+    <p class="hero-sub">Building scalable web applications and REST APIs with ASP.NET Core, EF Core, and SQL Server — grounded in OOP, SOLID, and clean architecture patterns.</p>
+    <div class="hero-meta">
+      <span>Suez, Egypt</span>
+      <span><a href="mailto:abdelrhman20042008@gmail.com">abdelrhman20042008@gmail.com</a></span>
+      <span><a href="https://linkedin.com/in/abdelrhman-mohamed-backend-developer" target="_blank">linkedin.com/in/abdelrhman-mohamed</a></span>
+    </div>
+    <div class="btn-row">
+      <a href="#projects" class="btn">view_projects()</a>
+      <a href="#contact" class="btn ghost">get_in_touch()</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag mono">01</span><h2>about.cs</h2></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a backend-focused developer studying <strong>Mathematics & Computer Science</strong> at Suez University (expected 2027), currently building my foundation in <strong>ASP.NET Core</strong> and <strong>SQL Server</strong>.</p>
+        <p>My work centers on writing clean, maintainable backend code — applying the <strong>Repository Pattern</strong>, <strong>Dependency Injection</strong>, and REST API design across several end-to-end systems, from employee management to banking simulations.</p>
+        <p>Outside of backend work, I've trained in front-end fundamentals and Flutter, giving me a practical view across the stack.</p>
+      </div>
+      <div class="stack-box">
+        <h3>// tech_stack.json</h3>
+        <div class="chip-group">
+          <span class="chip-label">languages</span>
+          <div class="chips">
+            <span class="chip">C#</span><span class="chip">SQL</span><span class="chip">C++</span><span class="chip">Python</span><span class="chip">JavaScript</span>
+          </div>
+        </div>
+        <div class="chip-group">
+          <span class="chip-label">backend</span>
+          <div class="chips">
+            <span class="chip">ASP.NET Core</span><span class="chip">ASP.NET MVC</span><span class="chip">EF Core</span><span class="chip">LINQ</span>
+          </div>
+        </div>
+        <div class="chip-group">
+          <span class="chip-label">concepts</span>
+          <div class="chips">
+            <span class="chip">OOP</span><span class="chip">SOLID</span><span class="chip">REST APIs</span><span class="chip">Repository Pattern</span><span class="chip">DI</span>
+          </div>
+        </div>
+        <div class="chip-group">
+          <span class="chip-label">tools</span>
+          <div class="chips">
+            <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Visual Studio</span><span class="chip">SQL Server</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag mono">02</span><h2>projects/</h2></div>
+    <div class="proj-list">
+      <div class="proj">
+        <div class="proj-top"><span class="proj-name">Employee Registration System</span><span class="proj-stack">ASP.NET MVC · EF Core · SQL Server</span></div>
+        <p class="proj-desc">A web-based employee registration and management system built on structured MVC architecture, with full CRUD operations, Repository Pattern, Dependency Injection, and data validation.</p>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><span class="proj-name">Banking System</span><span class="proj-stack">ASP.NET MVC · EF Core · SQL Server</span></div>
+        <p class="proj-desc">A banking simulation handling accounts, transactions, and data validation, built around core OOP concepts.</p>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><span class="proj-name">Library Management System</span><span class="proj-stack">ASP.NET MVC · EF Core · SQL Server</span></div>
+        <p class="proj-desc">A management system for books and users, with search, validation, and borrowing workflows.</p>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><span class="proj-name">Restaurant Orders System</span><span class="proj-stack">ASP.NET MVC · EF Core · SQL Server</span></div>
+        <p class="proj-desc">An order management system implementing business rules, calculations, and structured workflow logic.</p>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><span class="proj-name">XO (Tic-Tac-Toe)</span><span class="proj-stack">C# · OOP</span></div>
+        <p class="proj-desc">Game logic and win-condition algorithms built with structured programming and state management.</p>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><span class="proj-name">Snake Game</span><span class="proj-stack">Python · GUI</span></div>
+        <p class="proj-desc">A GUI-based game built using event-driven programming.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="training">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag mono">03</span><h2>training_log.md</h2></div>
+    <div class="timeline">
+      <div class="t-item">
+        <span class="t-org mono">MEC Academy</span>
+        <div>
+          <div class="t-title">Backend .NET Development Course</div>
+          <div class="t-desc">C#, OOP, ASP.NET Core, EF Core, SQL Server, and backend fundamentals.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <span class="t-org mono">ITI Institute</span>
+        <div>
+          <div class="t-title">Front-End Development Training</div>
+          <div class="t-desc">HTML5, CSS3, JavaScript, and Bootstrap.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <span class="t-org mono">ITI Institute</span>
+        <div>
+          <div class="t-title">Mobile Development Training</div>
+          <div class="t-desc">Mobile app development using Flutter.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <span class="t-org mono">Suez University</span>
+        <div>
+          <div class="t-title">B.Sc. Mathematics & Computer Science</div>
+          <div class="t-desc">Expected graduation: 2027.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="prompt-line mono"><span class="dot">➜</span> contact --open</div>
+    <h2>Let's build something.</h2>
+    <p>Open to junior backend roles and collaborative projects.</p>
+    <div class="contact-row">
+      <a href="mailto:abdelrhman20042008@gmail.com" class="btn">email me</a>
+      <a href="https://linkedin.com/in/abdelrhman-mohamed-backend-developer" target="_blank" class="btn ghost">linkedin</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
